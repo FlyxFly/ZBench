@@ -2,11 +2,10 @@
 
 又一个Linux VPS测评脚本
 
+
 ## 说明
 
-平时测试VPS的时候一直是靠着 **Bench.sh** 来测试的，最近看到 **Oldking**大佬 的 **SuperBench** 也很方便。我自己把这两者的脚本结合在一起，然后加入 **Ping** 以及 **路由测试** 功能。比较懒人，简单快捷。方便VPS测评站的朋友们使用。因为会生成测评报告，可以很方便地分享给其他朋友看自己的测评数据。
-
-示例(Demo)：[https://www.zhujiboke.com/zbench-example.html](https://www.zhujiboke.com/zbench-example.html)
+感觉这个脚本挺好用的，可以在线查看评测报告，不过原作者的域名已经失效，无法在线查看。我自己搭建了一个在线服务，修改了一下脚本里面对应的链接。
 
 ## 脚本命令
 
