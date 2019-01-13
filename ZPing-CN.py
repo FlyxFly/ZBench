@@ -70,8 +70,8 @@ D = {
     '成都': 'speed.westidc.com.cn',
     '南京': '4gnanjing1.speedtest.jsinfo.net',
     '宁夏': '221.199.9.35',
-    '福州': 'upload1.testspeed.kaopuyun.com'
-    '广州': 'gzspeedtest.com',
+    '福州': 'upload1.testspeed.kaopuyun.com',
+    '广州': 'gzspeedtest.com'
     }
 
 
