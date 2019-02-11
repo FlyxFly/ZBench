@@ -1,23 +1,14 @@
-# Zench
-
-又一个Linux VPS测评脚本
-
+# ZBench-fixed
 
 ## 说明
 
-感觉这个脚本挺好用的，可以在线查看评测报告，不过原作者的域名已经失效，无法在线查看。我自己搭建了一个在线服务，修改了一下脚本里面对应的链接。
+感觉这个脚本挺好用的，可以在线查看评测报告，不过原作者的域名已经失效，无法在线查看。我自己搭建了一个在线服务，修改了一下脚本里面对应的链接。又可以在线查看测试结果了。
 
 ## 脚本命令
 
-如果中文版出现乱码等情况，请换成英文版。
-
 中文版：
 
-    wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh && bash ZBench-CN.sh
-    
-英文版：
-
-    wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh && bash ZBench.sh
+    wget -N --no-check-certificate https://github.com/FlyxFly/ZBench/raw/master/ZBench-CN.sh
     
 ## 效果图
 
@@ -33,5 +24,3 @@
 * python实现ping程序 ( [https://www.s0nnet.com/archives/python-icmp](https://www.s0nnet.com/archives/python-icmp) )
 * Python 设置颜色 ( [http://www.pythoner.com/357.html](http://www.pythoner.com/357.html) )
 * Kirito's Blog ( [https://www.ixh.me](https://www.ixh.me) )
-
-
