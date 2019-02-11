@@ -365,28 +365,42 @@ NetSSGping=$( sed -n "30p" /tmp/speed.txt )
 NetSCNspeed=$( sed -n "32p" /tmp/speed.txt )
 NetSCNping=$( sed -n "33p" /tmp/speed.txt )
 
-
+## 上海电信
 NetUPST=$( sed -n "4p" /tmp/speed_cn.txt )
 NetDWST=$( sed -n "5p" /tmp/speed_cn.txt )
 NetPiST=$( sed -n "6p" /tmp/speed_cn.txt )
+
+## 成都电信
 NetUPCT=$( sed -n "7p" /tmp/speed_cn.txt )
 NetDWCT=$( sed -n "8p" /tmp/speed_cn.txt )
 NetPiCT=$( sed -n "9p" /tmp/speed_cn.txt )
+
+## 西安电信
 NetUPXT=$( sed -n "10p" /tmp/speed_cn.txt )
 NetDWXT=$( sed -n "11p" /tmp/speed_cn.txt )
 NetPiXT=$( sed -n "12p" /tmp/speed_cn.txt )
+
+## 上海联通
 NetUPSU=$( sed -n "13p" /tmp/speed_cn.txt )
 NetDWSU=$( sed -n "14p" /tmp/speed_cn.txt )
 NetPiSU=$( sed -n "15p" /tmp/speed_cn.txt )
+
+## 重庆联通
 NetUPCU=$( sed -n "16p" /tmp/speed_cn.txt )
 NetDWCU=$( sed -n "17p" /tmp/speed_cn.txt )
 NetPiCU=$( sed -n "18p" /tmp/speed_cn.txt )
+
+## 北京电信
 NetUPXM=$( sed -n "19p" /tmp/speed_cn.txt )
 NetDWXM=$( sed -n "20p" /tmp/speed_cn.txt )
 NetPiXM=$( sed -n "21p" /tmp/speed_cn.txt )
+
+## 北京联通
 NetUPSM=$( sed -n "22p" /tmp/speed_cn.txt )
 NetDWSM=$( sed -n "23p" /tmp/speed_cn.txt )
 NetPiSM=$( sed -n "24p" /tmp/speed_cn.txt )
+
+## 湖南电信
 NetUPCM=$( sed -n "25p" /tmp/speed_cn.txt )
 NetDWCM=$( sed -n "26p" /tmp/speed_cn.txt )
 NetPiCM=$( sed -n "27p" /tmp/speed_cn.txt )
