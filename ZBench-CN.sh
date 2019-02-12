@@ -139,7 +139,7 @@ chmod a+rx /tmp/ZPing-CN.py
 #"TraceRoute to Shanghai Mobile"
 /tmp/besttrace speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
 #"TraceRoute to Shanghai Unicom"
-/tmp/besttrace 210.22.80.1 > /tmp/shu.txt 2>&1 &
+/tmp/besttrace 223.166.1.1 > /tmp/shu.txt 2>&1 &
 #"TraceRoute to Guangdong Telecom"
 /tmp/besttrace gd.189.cn > /tmp/gdt.txt 2>&1 &
 #"TraceRoute to Guangdong Mobile"
@@ -177,16 +177,16 @@ speed_test() {
 
 speed() {
     speed_test 'http://cachefly.cachefly.net/100mb.test' 'CacheFly'
-    speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
-    speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
-    speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
-    speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
-    speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-    speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
-    speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
-    speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
-    speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
-    speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
+    # speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
+    # speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
+    # speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
+    # speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
+    # speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
+    # speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
+    # speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
+    # speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
+    # speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
+    # speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
 }
 
 speed_test_cn(){
@@ -204,41 +204,28 @@ speed_test_cn(){
             local cerror="ERROR"
         fi
     else
-        temp=$(python /tmp/speedtest.py --server $1 --share 2>&1)
-        is_down=$(echo "$temp" | grep 'Download')
-        if [[ ${is_down} ]]; then
-            local REDownload=$(echo "$temp" | awk -F ':' '/Download/{print $2}')
-            local reupload=$(echo "$temp" | awk -F ':' '/Upload/{print $2}')
-            local relatency=$(echo "$temp" | awk -F ':' '/Hosted/{print $2}')
-            temp=$(echo "$relatency" | awk -F '.' '{print $1}')
-            if [[ ${temp} -gt 1000 ]]; then
-                relatency=" 000.000 ms"
-            fi
-            local nodeName=$2
-
-            printf "${YELLOW}%-29s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" "${nodeName}" "${reupload}" "${REDownload}" "${relatency}"
-        else
-            local cerror="ERROR"
-        fi
+        temp=$(python /tmp/speedtest.py --server $1 --json 2>&1)
+        python /tmp/Speedtest_print.py $temp $2
     fi
-
+    echo "$2@@@${temp}">> /tmp/speedtest_cn.txt
     #Record Speed_cn Data
-    echo ${reupload} >> /tmp/speed_cn.txt
-    echo ${REDownload} >> /tmp/speed_cn.txt
-    echo ${relatency} >> /tmp/speed_cn.txt
+    # echo ${reupload} >> /tmp/speed_cn.txt
+    # echo ${REDownload} >> /tmp/speed_cn.txt
+    # echo ${relatency} >> /tmp/speed_cn.txt
+
 }
 
 speed_cn() {
 
     speed_test_cn '12637' '襄阳电信'
-    speed_test_cn '3633' '上海电信'
-    speed_test_cn '4624' '成都电信'
-    speed_test_cn '4863' "西安电信"
-    speed_test_cn '5083' '上海联通'
-    speed_test_cn '5726' '重庆联通'
-    speed_test_cn '4751' "北京电信"
-    speed_test_cn '5145' '北京联通'
-    speed_test_cn '6132' '湖南电信'
+    # speed_test_cn '3633' '上海电信'
+    # speed_test_cn '4624' '成都电信'
+    # speed_test_cn '4863' "西安电信"
+    # speed_test_cn '5083' '上海联通'
+    # speed_test_cn '5726' '重庆联通'
+    # speed_test_cn '4751' "北京电信"
+    # speed_test_cn '5145' '北京联通'
+    # speed_test_cn '6132' '湖南电信'
 
     rm -rf /tmp/speedtest.py
 }
@@ -414,7 +401,9 @@ TSU=$( cat /tmp/shu.txt_table )
 TGM=$( cat /tmp/gdm.txt_table )
 TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
-curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&NetCFspeec=$NetCFspeec&NetCFping=$NetCFping&NetLJPspeed=$NetLJPspeed&NetLJPping=$NetLJPping&NetLSGspeed=$NetLSGspeed&NetLSGping=$NetLSGping&NetLUKspeed=$NetLUKspeed&NetLUKping=$NetLUKping&NetLDEspeed=$NetLDEspeed&NetLDEping=$NetLDEping&NetLCAspeed=$NetLCAspeed&NetLCAping=$NetLCAping&NetSTXspeed=$NetSTXspeed&NetSTXping=$NetSTXping&NetSWAspeed=$NetSWAspeed&NetSWAping=$NetSWAping&NetSDEspeed=$NetSDEspeed&NetSDEping=$NetSDEping&NetSSGspeed=$NetSSGspeed&NetSSGping=$NetSSGping&NetSCNspeed=$NetSCNspeed&NetSCNping=$NetSCNping&NetUPST=$NetUPST&NetDWST=$NetDWST&NetPiST=$NetPiST&NetUPCT=$NetUPCT&NetDWCT=$NetDWCT&NetPiCT=$NetPiCT&NetUPXT=$NetUPXT&NetDWXT=$NetDWXT&NetPiXT=$NetPiXT&NetUPSU=$NetUPSU&NetDWSU=$NetDWSU&NetPiSU=$NetPiSU&NetUPCU=$NetUPCU&NetDWCU=$NetDWCU&NetPiCU=$NetPiCU&NetUPXM=$NetUPXM&NetDWXM=$NetDWXM&NetPiXM=$NetPiXM&NetUPSM=$NetUPSM&NetDWSM=$NetDWSM&NetPiSM=$NetPiSM&NetUPCM=$NetUPCM&NetDWCM=$NetDWCM&NetPiCM=$NetPiCM&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY&Provider=$Provider"
+speedtest_cn=$( cat /tmp/speedtest_cn.txt )
+
+curl 'http://bench.fly2x.com/api/submit' --data "Speedtest_cn=$speedtest_cn&CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&NetCFspeec=$NetCFspeec&NetCFping=$NetCFping&NetLJPspeed=$NetLJPspeed&NetLJPping=$NetLJPping&NetLSGspeed=$NetLSGspeed&NetLSGping=$NetLSGping&NetLUKspeed=$NetLUKspeed&NetLUKping=$NetLUKping&NetLDEspeed=$NetLDEspeed&NetLDEping=$NetLDEping&NetLCAspeed=$NetLCAspeed&NetLCAping=$NetLCAping&NetSTXspeed=$NetSTXspeed&NetSTXping=$NetSTXping&NetSWAspeed=$NetSWAspeed&NetSWAping=$NetSWAping&NetSDEspeed=$NetSDEspeed&NetSDEping=$NetSDEping&NetSSGspeed=$NetSSGspeed&NetSSGping=$NetSSGping&NetSCNspeed=$NetSCNspeed&NetSCNping=$NetSCNping&NetUPST=$NetUPST&NetDWST=$NetDWST&NetPiST=$NetPiST&NetUPCT=$NetUPCT&NetDWCT=$NetDWCT&NetPiCT=$NetPiCT&NetUPXT=$NetUPXT&NetDWXT=$NetDWXT&NetPiXT=$NetPiXT&NetUPSU=$NetUPSU&NetDWSU=$NetDWSU&NetPiSU=$NetPiSU&NetUPCU=$NetUPCU&NetDWCU=$NetDWCU&NetPiCU=$NetPiCU&NetUPXM=$NetUPXM&NetDWXM=$NetDWXM&NetPiXM=$NetPiXM&NetUPSM=$NetUPSM&NetDWSM=$NetDWSM&NetPiSM=$NetPiSM&NetUPCM=$NetUPCM&NetDWCM=$NetDWCM&NetPiCM=$NetPiCM&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY&Provider=$Provider"
 IKEY=$(curl "http://bench.fly2x.com/api/getkey?akey=$AKEY" 2>/dev/null)
 echo "在线查看测评报告：http://bench.fly2x.com/?ikey=$IKEY"
 echo "您的测评报告已保存在 /root/report.html"
