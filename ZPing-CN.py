@@ -8,6 +8,7 @@
 '''
 
 import commands
+import json
 
 def ping(host):
     cmd = "ping "+ str(host) + " -c2 -W 2"
@@ -108,7 +109,7 @@ for x in D:
         # print(mystring.format(string[0][0],string[0][1],string[1][0],string[1][1],string[2][0],string[2][1]))
         string = list()
 
-print ping_result
+print json.dumps(ping_result)
 if len(string) == 2:
     l1 = str(int(len(string[0][0])/3+12))
     l2 = str(int(len(string[1][0])/3+12))
