@@ -206,7 +206,9 @@ speed_test_cn(){
     else
         temp=$(python /tmp/speedtest.py --server $1 --json 2>&1)
     fi
-    python /tmp/Speedtest_print.py $temp $2
+    
+    echo "$temp" > /tmp/speedtest_tmp.txt
+    python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
     echo "{name:$2,result:$temp}">> /tmp/speedtest_cn.txt
     #Record Speed_cn Data
     # echo ${reupload} >> /tmp/speed_cn.txt
