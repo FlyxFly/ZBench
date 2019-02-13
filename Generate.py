@@ -647,6 +647,7 @@ traceroute_to_table("/tmp/gdu.txt")
 
 # own = traceroute_to_dict("/tmp/own.txt")
 traceroute_to_table("/tmp/own.txt")
+traceroute_to_table("/tmp/cde.txt")
 # own_html = dict_to_table(own,"seventh")
 
 # html = html.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],info[10],info[11],info[12],info[13],info[14], \

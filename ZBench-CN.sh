@@ -148,8 +148,8 @@ chmod a+rx /tmp/ZPing-CN.py
 /tmp/besttrace 211.136.192.6 > /tmp/gdm.txt 2>&1 &
 #"TraceRoute to Guangdong Unicom"
 /tmp/besttrace 221.5.88.88 > /tmp/gdu.txt 2>&1 &
-#"TraceRoute to Owner's Network"
-/tmp/besttrace ${OwnerIP} > /tmp/own.txt 2>&1 &
+#"TraceRoute to Chengdu EDU"
+/tmp/besttrace sp1.uestc.edu.cn > /tmp/cde.txt 2>&1 &
 
 
 
@@ -214,7 +214,7 @@ speed_cn() {
 
     speed_test_cn '17251' '广州电信'
     speed_test_cn '6611' "广州移动"
-    speed_test_cn '3891' '福州联通'
+    speed_test_cn '4884' '福州联通'
 
     speed_test_cn '5396' '苏州电信'
     speed_test_cn '5083' "上海联通"
@@ -336,8 +336,9 @@ TSU=$( cat /tmp/shu.txt_table )
 TGM=$( cat /tmp/gdm.txt_table )
 TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
+CDE=$( cat /tmp/cde.txt_table )
 speedtest_cn=$( cat /tmp/speedtest_cn.txt )
 speedtest_overseas=$( cat /tmp/speedtest.txt )
-curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY"
+curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&CDE=$CDE&AKEY=$AKEY"
 IKEY=$(curl "http://bench.fly2x.com/api/getkey?akey=$AKEY" 2>/dev/null)
 echo "在线查看测评报告：http://bench.fly2x.com/?ikey=$IKEY"
