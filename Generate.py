@@ -615,56 +615,56 @@ $('.ui.basic.modal')
 
 """
 
-info = change_to_list("/tmp/info.txt")
+# info = change_to_list("/tmp/info.txt")
 
-speed = change_to_list("/tmp/speed.txt")
+# speed = change_to_list("/tmp/speed.txt")
 
-speed_cn = change_to_list("/tmp/speed_cn.txt")
+# speed_cn = change_to_list("/tmp/speed_cn.txt")
 
-shm = traceroute_to_dict("/tmp/shm.txt")
+# shm = traceroute_to_dict("/tmp/shm.txt")
 traceroute_to_table("/tmp/shm.txt")
-shm_html = dict_to_table(shm,"first")
+# shm_html = dict_to_table(shm,"first")
 
-sht = traceroute_to_dict("/tmp/sht.txt")
+# sht = traceroute_to_dict("/tmp/sht.txt")
 traceroute_to_table("/tmp/sht.txt")
-sht_html = dict_to_table(sht,"second")
+# sht_html = dict_to_table(sht,"second")
 
-shu = traceroute_to_dict("/tmp/shu.txt")
+# shu = traceroute_to_dict("/tmp/shu.txt")
 traceroute_to_table("/tmp/shu.txt")
-shu_html = dict_to_table(shu,"third")
+# shu_html = dict_to_table(shu,"third")
 
-gdm = traceroute_to_dict("/tmp/gdm.txt")
+# gdm = traceroute_to_dict("/tmp/gdm.txt")
 traceroute_to_table("/tmp/gdm.txt")
-gdm_html = dict_to_table(gdm,"fourth")
+# gdm_html = dict_to_table(gdm,"fourth")
 
-gdt = traceroute_to_dict("/tmp/gdt.txt")
+# gdt = traceroute_to_dict("/tmp/gdt.txt")
 traceroute_to_table("/tmp/gdt.txt")
-gdt_html = dict_to_table(gdt,"fifth")
+# gdt_html = dict_to_table(gdt,"fifth")
 
-gdu = traceroute_to_dict("/tmp/gdu.txt")
+# gdu = traceroute_to_dict("/tmp/gdu.txt")
 traceroute_to_table("/tmp/gdu.txt")
-gdu_html = dict_to_table(gdu,"sixth")
+# gdu_html = dict_to_table(gdu,"sixth")
 
-own = traceroute_to_dict("/tmp/own.txt")
+# own = traceroute_to_dict("/tmp/own.txt")
 traceroute_to_table("/tmp/own.txt")
-own_html = dict_to_table(own,"seventh")
+# own_html = dict_to_table(own,"seventh")
 
-html = html.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],info[10],info[11],info[12],info[13],info[14], \
+# html = html.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],info[10],info[11],info[12],info[13],info[14], \
 
-speed[0],speed[1],speed[2],speed[3],speed[4],speed[5],speed[6],speed[7],speed[8],speed[9],speed[10],speed[11],speed[12],speed[13],speed[14],speed[15],\
+# speed[0],speed[1],speed[2],speed[3],speed[4],speed[5],speed[6],speed[7],speed[8],speed[9],speed[10],speed[11],speed[12],speed[13],speed[14],speed[15],\
 
-speed[16],speed[17],speed[18],speed[19],speed[20],speed[21],speed[22],speed[23],speed[24],speed[25],speed[26],speed[27],speed[28],speed[29],speed[30],speed[31],speed[32],\
+# speed[16],speed[17],speed[18],speed[19],speed[20],speed[21],speed[22],speed[23],speed[24],speed[25],speed[26],speed[27],speed[28],speed[29],speed[30],speed[31],speed[32],\
 
-speed_cn[0],speed_cn[1],speed_cn[2],speed_cn[3],speed_cn[4],speed_cn[5],speed_cn[6],speed_cn[7],speed_cn[8],speed_cn[9],speed_cn[10],speed_cn[11],speed_cn[12],\
+# speed_cn[0],speed_cn[1],speed_cn[2],speed_cn[3],speed_cn[4],speed_cn[5],speed_cn[6],speed_cn[7],speed_cn[8],speed_cn[9],speed_cn[10],speed_cn[11],speed_cn[12],\
 
-speed_cn[13],speed_cn[14],speed_cn[15],speed_cn[16],speed_cn[17],\
+# speed_cn[13],speed_cn[14],speed_cn[15],speed_cn[16],speed_cn[17],\
 
-speed_cn[18],speed_cn[19],speed_cn[20],speed_cn[21],speed_cn[22],speed_cn[23])
+# speed_cn[18],speed_cn[19],speed_cn[20],speed_cn[21],speed_cn[22],speed_cn[23])
 
-html = html + shm_html + sht_html + shu_html + gdm_html + gdt_html + gdu_html + own_html + footer
+# html = html + shm_html + sht_html + shu_html + gdm_html + gdt_html + gdu_html + own_html + footer
 
-web = open("/root/report.html","w")
+# web = open("/root/report.html","w")
 
-web.write(html)
+# web.write(html)
 
-web.close()
+# web.close()
