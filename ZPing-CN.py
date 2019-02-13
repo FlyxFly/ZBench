@@ -106,18 +106,18 @@ for x in D:
         l2 = str(int(len(string[1][0])/3+12))
         l3 = str(int(len(string[2][0])/3+12))
         mystring = "{0:"+l1+"}: {1:20}{2:"+l2+"}: {3:20}{4:"+l3+"}: {5:20}"
-        # print(mystring.format(string[0][0],string[0][1],string[1][0],string[1][1],string[2][0],string[2][1]))
+        print(mystring.format(string[0][0],string[0][1],string[1][0],string[1][1],string[2][0],string[2][1]))
         string = list()
 
-print json.dumps(ping_result)
+# print json.dumps(ping_result)
 if len(string) == 2:
     l1 = str(int(len(string[0][0])/3+12))
     l2 = str(int(len(string[1][0])/3+12))
     mystring = "{0:"+l1+"}: {1:20}{2:"+l2+"}: {3:20}"
-    # print(mystring.format(string[0][0],string[0][1],string[1][0],string[1][1]))
+    print(mystring.format(string[0][0],string[0][1],string[1][0],string[1][1]))
 
 if len(string) == 1:
     l1 = str(int(len(string[0][0])/3+12))
     mystring = "{0:"+l1+"}: {1:20}"
-    # print(mystring.format(string[0][0],string[0][1]))
+    print(mystring.format(string[0][0],string[0][1]))
 
