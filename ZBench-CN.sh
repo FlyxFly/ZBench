@@ -327,6 +327,7 @@ AKEY=$( uuid )
 
 echo "" > /tmp/speedtest_cn.txt
 echo "" > /tmp/speedtest.txt
+touch /tmp/speedtest_tmp.txt
 printf "%-30s%-20s%-24s%-12s\n" "节点名称" "IP地址" "下载速度" "延迟"
 speed && next
 printf "%-30s%-22s%-24s%-12s\n" "节点名称" "上传速度" "下载速度" "延迟"
@@ -334,9 +335,6 @@ speed_cn && next
 python /tmp/ZPing-CN.py
 next
 
-
-# wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/Generate.py >> /dev/null 2>&1
-# python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
 TSM=$( cat /tmp/shm.txt_table )
 TST=$( cat /tmp/sht.txt_table )
 TSU=$( cat /tmp/shu.txt_table )
@@ -345,29 +343,6 @@ TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
 speedtest_cn=$( cat /tmp/speedtest_cn.txt )
 speedtest_overseas=$( cat /tmp/speedtest.txt )
-curl 'http://bench.fly2x.com/api/submit' --data "&CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY&"
+curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY"
 IKEY=$(curl "http://bench.fly2x.com/api/getkey?akey=$AKEY" 2>/dev/null)
 echo "在线查看测评报告：http://bench.fly2x.com/?ikey=$IKEY"
-
-
-
-# echo "您的测评报告已保存在 /root/report.html"
-
-# If use simple http server
-# while :; do echo
-#   read -p "你想现在查看您的测评报告吗? [y/n]: " ifreport
-#   if [[ ! $ifreport =~ ^[y,n]$ ]]; then
-#     echo "输入错误! 请确保你输入的是 'y' 或者 'n'"
-#   else
-#     break
-#   fi
-# done
-
-# if [[ $ifreport == 'y' ]];then
-#     echo ""
-#     myip=`curl -m 10 -s http://members.3322.org/dyndns/getip`
-#     echo "访问 http://${myip}:8001/index.html 查看您的测试报告，按 Ctrl + C 退出"
-# 	cd /tmp/report
-#     python -m SimpleHTTPServer 8001
-#     iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8001 -j ACCEPT
-# fi
