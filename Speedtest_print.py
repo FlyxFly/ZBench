@@ -14,8 +14,7 @@ test_result=f.read()
 try:
     speedtest=json.loads(test_result)
 except ValueError:
-    print test_result
-    print 'Error',node_name,test_result
+    print u'测速节点node_name可能故障了',test_result
     exit()
 
 upload_speed=round(speedtest['upload']/8388608,2)
