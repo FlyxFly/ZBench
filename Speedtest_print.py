@@ -21,5 +21,5 @@ except ValueError:
 upload_speed=round(speedtest['upload']/8388608,2)
 download_speed=round(speedtest['download']/8388608,2)
 server=speedtest['server']['name']
-latency=speedtest['ping']
-print '%030s%020sMB/s%024sMB/s%012sms'%(node_name,upload_speed,download_speed,latency)
+latency=round(speedtest['ping'],3)
+print "{:<30s}{:<20s}{:<24s}{:<12s}".format(node_name,str(upload_speed)+'MB/s',str(download_speed)+'MB/s',str(latency)+'ms')
