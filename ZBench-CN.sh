@@ -165,14 +165,14 @@ next() {
 }
 
 speed_test() {
-    local speedtest=$(wget -4O /dev/null -T300 $1 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
+    local speedtest=$(wget -4O /dev/null -T60 $1 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
     local ipaddress=$(ping -c1 -n `awk -F'/' '{print $3}' <<< $1` | awk -F'[()]' '{print $2;exit}')
     local nodeName=$2
     local latency=$(ping $ipaddress -c 3 | grep avg | awk -F / '{print $5}')" ms"
     printf "${YELLOW}%-26s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}" "${latency}"
 
     #Record Speed Data
-    echo "{name:$2,result:{ip:$ipaddress,download:$speedtest,latency:$latency}}" >> /tmp/speedtest.txt
+    echo "{\"name\":\"$2\",\"result\":{\"ip\":\"$ipaddress\",\"download\":\"$speedtest\",\"latency\":\"$latency\"}}" >> /tmp/speedtest.txt
 }
 
 speed() {
@@ -180,54 +180,45 @@ speed() {
     speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
     speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
     speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
-    speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
     speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-    speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
     speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
     speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
-    speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
     speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
+    speed_test 'http://sgp-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Singapore, SG'
+    speed_test 'http://hnd-jp-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Tokyo, JP'
+    speed_test 'http://lax-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Los Angels, US'
+    speed_test 'http://sjo-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, San Jose, US'
+    speed_test 'http://proof.ovh.net/files/100Mb.dat' 'OVH, Roubaix, FR'
 }
 
 speed_test_cn(){
     if [[ $1 == '' ]]; then
-        temp=$(python /tmp/speedtest.py --share 2>&1)
-        is_down=$(echo "$temp" | grep 'Download')
-        if [[ ${is_down} ]]; then
-            local REDownload=$(echo "$temp" | awk -F ':' '/Download/{print $2}')
-            local reupload=$(echo "$temp" | awk -F ':' '/Upload/{print $2}')
-            local relatency=$(echo "$temp" | awk -F ':' '/Hosted/{print $2}')
-            local nodeName=$2
-
-            printf "${YELLOW}%-29s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" "${nodeName}" "${reupload}" "${REDownload}" "${relatency}"
-        else
-            local cerror="ERROR"
-        fi
+        temp=$(python /tmp/speedtest.py --json 2>&1)
+        echo "$temp" > /tmp/speedtest_tmp.txt
+        python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
     else
         temp=$(python /tmp/speedtest.py --server $1 --json 2>&1)
     fi
     
     echo "$temp" > /tmp/speedtest_tmp.txt
     python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
-    echo "{name:$2,result:$temp}">> /tmp/speedtest_cn.txt
-    #Record Speed_cn Data
-    # echo ${reupload} >> /tmp/speed_cn.txt
-    # echo ${REDownload} >> /tmp/speed_cn.txt
-    # echo ${relatency} >> /tmp/speed_cn.txt
-
+    echo "{\"name\":\"$2\",\"result\":$temp}">> /tmp/speedtest_cn.txt
 }
 
 speed_cn() {
 
-    speed_test_cn '12637' '襄阳电信'
-    speed_test_cn '3633' '上海电信'
-    speed_test_cn '4624' '成都电信'
-    speed_test_cn '4863' "西安电信"
-    speed_test_cn '5083' '上海联通'
-    speed_test_cn '5726' '重庆联通'
-    speed_test_cn '4751' "北京电信"
-    speed_test_cn '5145' '北京联通'
-    speed_test_cn '6132' '湖南电信'
+    speed_test_cn '20054' '成都电信'
+    speed_test_cn '2461' '成都联通'
+    speed_test_cn '4575' '成都移动'
+    speed_test_cn '11444' '成都电子科大'
+
+    speed_test_cn '17251' '广州电信'
+    speed_test_cn '6611' "广州移动"
+    speed_test_cn '3891' '福州联通'
+
+    speed_test_cn '5396' '苏州电信'
+    speed_test_cn '5083' "上海联通"
+    speed_test_cn '16719' '上海移动'
 
     rm -rf /tmp/speedtest.py
     rm -rf /tmp/Speedtest_print.py
