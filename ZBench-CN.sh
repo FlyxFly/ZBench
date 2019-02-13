@@ -177,16 +177,16 @@ speed_test() {
 
 speed() {
     speed_test 'http://cachefly.cachefly.net/100mb.test' 'CacheFly'
-    # speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
-    # speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
-    # speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
-    # speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
-    # speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-    # speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
-    # speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
-    # speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
-    # speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
-    # speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
+    speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
+    speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
+    speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
+    speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
+    speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
+    speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
+    speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
+    speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
+    speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
+    speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
 }
 
 speed_test_cn(){
@@ -220,14 +220,14 @@ speed_test_cn(){
 speed_cn() {
 
     speed_test_cn '12637' '襄阳电信'
-    # speed_test_cn '3633' '上海电信'
-    # speed_test_cn '4624' '成都电信'
-    # speed_test_cn '4863' "西安电信"
-    # speed_test_cn '5083' '上海联通'
-    # speed_test_cn '5726' '重庆联通'
-    # speed_test_cn '4751' "北京电信"
-    # speed_test_cn '5145' '北京联通'
-    # speed_test_cn '6132' '湖南电信'
+    speed_test_cn '3633' '上海电信'
+    speed_test_cn '4624' '成都电信'
+    speed_test_cn '4863' "西安电信"
+    speed_test_cn '5083' '上海联通'
+    speed_test_cn '5726' '重庆联通'
+    speed_test_cn '4751' "北京电信"
+    speed_test_cn '5145' '北京联通'
+    speed_test_cn '6132' '湖南电信'
 
     rm -rf /tmp/speedtest.py
     rm -rf /tmp/Speedtest_print.py
