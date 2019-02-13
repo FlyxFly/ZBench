@@ -5,7 +5,7 @@ import json
 test_result_file=sys.argv[1]
 node_name=sys.argv[2]
 try:
-    f = open(test_result_file, 'r')
+    test_result = open(test_result_file, 'r')
 except:
     print 'Read reusult file error.' 
     exit()
