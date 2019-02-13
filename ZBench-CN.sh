@@ -335,6 +335,10 @@ speed_cn && next
 python /tmp/ZPing-CN.py
 next
 
+
+
+wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/Generate.py >> /dev/null 2>&1
+python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
 TSM=$( cat /tmp/shm.txt_table )
 TST=$( cat /tmp/sht.txt_table )
 TSU=$( cat /tmp/shu.txt_table )
