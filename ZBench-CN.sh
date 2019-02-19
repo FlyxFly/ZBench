@@ -137,19 +137,19 @@ fi
 chmod a+rx /tmp/ZPing-CN.py
 
 #"TraceRoute to Shanghai Telecom"
-/tmp/besttrace 61.129.42.6 > /tmp/sht.txt 2>&1 &
+/tmp/besttrace -n 61.129.42.6 > /tmp/sht.txt 2>&1 &
 #"TraceRoute to Shanghai Mobile"
-/tmp/besttrace speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
+/tmp/besttrace -n speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
 #"TraceRoute to Shanghai Unicom"
-/tmp/besttrace 223.166.1.1 > /tmp/shu.txt 2>&1 &
+/tmp/besttrace -n 223.166.1.1 > /tmp/shu.txt 2>&1 &
 #"TraceRoute to Guangdong Telecom"
-/tmp/besttrace gd.189.cn > /tmp/gdt.txt 2>&1 &
+/tmp/besttrace -n gd.189.cn > /tmp/gdt.txt 2>&1 &
 #"TraceRoute to Guangdong Mobile"
-/tmp/besttrace 211.136.192.6 > /tmp/gdm.txt 2>&1 &
+/tmp/besttrace -n 211.136.192.6 > /tmp/gdm.txt 2>&1 &
 #"TraceRoute to Guangdong Unicom"
-/tmp/besttrace 221.5.88.88 > /tmp/gdu.txt 2>&1 &
+/tmp/besttrace -n 221.5.88.88 > /tmp/gdu.txt 2>&1 &
 #"TraceRoute to Chengdu EDU"
-/tmp/besttrace sp1.uestc.edu.cn > /tmp/cde.txt 2>&1 &
+/tmp/besttrace -n sp1.uestc.edu.cn > /tmp/cde.txt 2>&1 &
 
 
 

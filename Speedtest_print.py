@@ -22,3 +22,4 @@ download_speed=round(speedtest['download']/8388608,2)
 server=speedtest['server']['name']
 latency=round(speedtest['ping'],3)
 print "{:<30s}{:<18s}{:<20s}{:<8s}".format(node_name,str(upload_speed)+'MB/s',str(download_speed)+'MB/s',str(latency)+'ms')
+f.close()
