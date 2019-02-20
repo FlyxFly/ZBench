@@ -172,7 +172,7 @@ speed_test() {
     printf "${YELLOW}%-26s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}" "${latency}"
 
     #Record Speed Data
-    echo '{"name":"$2","result":{"ip":"$ipaddress","download":"$speedtest","latency":"$latency"}}' >> /tmp/speedtest.txt
+    echo "{\"name\":\"$2\",\"result\":{\"ip\":\"$ipaddress\",\"download\":\"$speedtest\",\"latency\":\"$latency\"}}" >> /tmp/speedtest.txt
 }
 
 speed() {
@@ -210,7 +210,7 @@ speed_cn() {
     speed_test_cn '20054' '成都电信'
     speed_test_cn '2461' '成都联通'
     speed_test_cn '4575' '成都移动'
-    speed_test_cn '11444' '成都电子科大'
+    speed_test_cn '11444' '成都教育'
 
     speed_test_cn '17251' '广州电信'
     speed_test_cn '6611' "广州移动"
