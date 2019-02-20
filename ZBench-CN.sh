@@ -166,13 +166,13 @@ next() {
 
 speed_test() {
     local speedtest=$(wget -4O /dev/null -T60 $1 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
-    local ipaddress=$(ping -c1 -n `awk -F'/' '{print $3}' <<< $1` | awk -F'[()]' '{print $2;exit}')
+    local ipaddress=$(ping -c1 -n `awk -F'/' '{print $3}' <<< $1` | awk -F '[()]' '{print $2;exit}')
     local nodeName=$2
     local latency=$(ping $ipaddress -c 3 | grep avg | awk -F / '{print $5}')" ms"
     printf "${YELLOW}%-26s${GREEN}%-18s${RED}%-20s${SKYBLUE}%-12s${PLAIN}\n" "${nodeName}" "${ipaddress}" "${speedtest}" "${latency}"
 
     #Record Speed Data
-    echo "{\"name\":\"$2\",\"result\":{\"ip\":\"$ipaddress\",\"download\":\"$speedtest\",\"latency\":\"$latency\"}}" >> /tmp/speedtest.txt
+    echo '{"name":"$2","result":{"ip":"$ipaddress","download":"$speedtest","latency":"$latency"}}' >> /tmp/speedtest.txt
 }
 
 speed() {
@@ -328,8 +328,9 @@ next
 
 
 
-wget -N --no-check-certificate https://raw.githubusercontent.com/FlyxFly/ZBench/master/Generate.py >> /dev/null 2>&1
-python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
+wget -N --no-check-certificate https://raw.githubusercontent.com/FlyxFly/ZBench/master/FormatTraceResult.py >> /dev/null 2>&1
+# python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
+python FormatTraceResult.py && rm -rf FormatTraceResult.py
 TSM=$( cat /tmp/shm.txt_table )
 TST=$( cat /tmp/sht.txt_table )
 TSU=$( cat /tmp/shu.txt_table )
