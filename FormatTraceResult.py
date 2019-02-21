@@ -1,21 +1,25 @@
 #coding=utf-8
 import json
 def fmt(file):
-        try:
-                f=open(file)
+	try:
+            	f=open(file,'r')
         except:
-                print '路由追踪文件不存在'
+               	print '路由追踪文件不存在'
                 return;
         content=f.read()
         f.close()
         content_string_arr=content.split('\n')
         content_arr=list()
-        for item in content_string_arr:
+        for idx,item in enumerate(content_string_arr):
                 if len(item)>0 :
-                        content_arr.append(json.loads(item))
+                        line=json.loads(item)
+                        if line.has_key('hop') and line['hop']<4:
+                                line['data'][0]['ip']="已隐藏"
+                        content_arr.append(line)
         t=open(file+'_table','w')
         t.write(json.dumps(content_arr))
         t.close()
+
         
         
 

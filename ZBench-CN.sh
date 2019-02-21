@@ -340,6 +340,8 @@ TGU=$( cat /tmp/gdu.txt_table )
 CDE=$( cat /tmp/cde.txt_table )
 speedtest_cn=$( cat /tmp/speedtest_cn.txt )
 speedtest_overseas=$( cat /tmp/speedtest.txt )
-curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&CDE=$CDE&AKEY=$AKEY"
+ping=$( cat /tmp/ZBenchping.txt )
+
+curl 'http://bench.fly2x.com/api/submit' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&Provider=$Provider&Speedtest_cn=$speedtest_cn&Speedtest_overseas=$speedtest_overseas&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&CDE=$CDE&AKEY=$AKEY&ping=$ping"
 IKEY=$(curl "http://bench.fly2x.com/api/getkey?akey=$AKEY" 2>/dev/null)
 echo "在线查看测评报告：http://bench.fly2x.com/?ikey=$IKEY"

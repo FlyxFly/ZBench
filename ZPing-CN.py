@@ -110,6 +110,9 @@ for x in D:
         string = list()
 
 # print json.dumps(ping_result)
+f.open('/tmp/ZBenchping.txt','w')
+f.write(json.dumps(ping_result))
+f.close()
 if len(string) == 2:
     l1 = str(int(len(string[0][0])/3+12))
     l2 = str(int(len(string[1][0])/3+12))
