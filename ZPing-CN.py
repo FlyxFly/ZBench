@@ -110,7 +110,7 @@ for x in D:
         string = list()
 
 # print json.dumps(ping_result)
-f.open('/tmp/ZBenchping.txt','w')
+f = open('/tmp/ZBenchping.txt','w')
 f.write(json.dumps(ping_result))
 f.close()
 if len(string) == 2:
