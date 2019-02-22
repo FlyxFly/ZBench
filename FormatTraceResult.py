@@ -1,10 +1,10 @@
 #coding=utf-8
 import json
 def fmt(file):
-	try:
+        try:
             	f=open(file,'r')
         except:
-               	print '路由追踪文件不存在'
+               	print '路由追踪文件不存在'+file
                 return;
         content=f.read()
         f.close()
