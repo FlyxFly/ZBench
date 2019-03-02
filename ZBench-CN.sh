@@ -325,7 +325,7 @@ printf "%-30s%-22s%-24s%-12s\n" "节点名称" "上传速度" "下载速度" "�
 speed_cn && next
 python /tmp/ZPing-CN.py
 next
-
+sleep 60s
 
 
 wget -N --no-check-certificate https://raw.githubusercontent.com/FlyxFly/ZBench/master/FormatTraceResult.py >> /dev/null 2>&1
