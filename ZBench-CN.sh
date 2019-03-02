@@ -180,14 +180,12 @@ speed() {
     speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
     speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
     speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
-    speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
-    speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
+    speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, US'
     speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
     speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
-    speed_test 'http://sgp-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Singapore, SG'
-    speed_test 'http://hnd-jp-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Tokyo, JP'
-    speed_test 'http://lax-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Los Angels, US'
-    speed_test 'http://sjo-ca-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, San Jose, US'
+    speed_test 'http://tor-ca-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Toronto, CA'
+    speed_test 'http://ams-nl-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Amsterdan, NL'
+    speed_test 'http://syd-au-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Sydney, AU'
     speed_test 'http://proof.ovh.net/files/100Mb.dat' 'OVH, Roubaix, FR'
 }
 
@@ -325,12 +323,12 @@ printf "%-30s%-22s%-24s%-12s\n" "节点名称" "上传速度" "下载速度" "�
 speed_cn && next
 python /tmp/ZPing-CN.py
 next
-sleep 60s
+sleep 3m
 
 
-wget -N --no-check-certificate https://raw.githubusercontent.com/FlyxFly/ZBench/master/FormatTraceResult.py >> /dev/null 2>&1
+wget -N --no-check-certificate https://raw.githubusercontent.com/FlyxFly/ZBench/master/Format_traceroute.py >> /dev/null 2>&1
 # python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
-python FormatTraceResult.py && rm -rf FormatTraceResult.py
+python Format_traceroute.py && rm -rf Format_traceroute.py
 TSM=$( cat /tmp/shm.txt_table )
 TST=$( cat /tmp/sht.txt_table )
 TSU=$( cat /tmp/shu.txt_table )
