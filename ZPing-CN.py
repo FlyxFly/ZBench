@@ -67,7 +67,7 @@ D = {
     '苏州': '218.94.214.42',
     '长沙': '61.234.254.5',
     '哈尔滨': '202.97.224.1',
-    '北京': 'st1.bjtelecom.net',
+    '北京': 'gameeye.huaweicloud.com',
     '成都': 'speed.westidc.com.cn',
     '南京': '4gnanjing1.speedtest.jsinfo.net',
     '宁夏': '221.199.9.35',
