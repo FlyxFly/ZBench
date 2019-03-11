@@ -149,7 +149,7 @@ chmod a+rx /tmp/ZPing-CN.py
 #"TraceRoute to Guangdong Unicom"
 /tmp/besttrace -n -J -q 1  221.5.88.88 > /tmp/gdu.txt 2>&1 &
 #"TraceRoute to Chengdu EDU"
-/tmp/besttrace -n -J -q 1  sp1.uestc.edu.cn > /tmp/cde.txt 2>&1 &
+/tmp/besttrace -n -J -q 1  www.uestc.edu.cn > /tmp/cde.txt 2>&1 &
 
 
 
@@ -323,6 +323,7 @@ printf "%-30s%-22s%-24s%-12s\n" "节点名称" "上传速度" "下载速度" "�
 speed_cn && next
 python /tmp/ZPing-CN.py
 next
+printf $(date "+%H:%M:%S")"  等待路由追踪结束，预计需要3分钟"
 sleep 3m
 
 
