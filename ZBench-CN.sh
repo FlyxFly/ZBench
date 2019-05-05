@@ -196,11 +196,15 @@ speed_test_cn(){
         python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
     else
         temp=$(python /tmp/speedtest.py --server $1 --json 2>&1)
+
     fi
+    if [ ${#temp} \> 60 ]; then
+        echo "$temp" > /tmp/speedtest_tmp.txt
+        python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
+        echo "{\"name\":\"$2\",\"result\":$temp}">> /tmp/speedtest_cn.txt
+    fi
+
     
-    echo "$temp" > /tmp/speedtest_tmp.txt
-    python /tmp/Speedtest_print.py /tmp/speedtest_tmp.txt $2
-    echo "{\"name\":\"$2\",\"result\":$temp}">> /tmp/speedtest_cn.txt
 }
 
 speed_cn() {
